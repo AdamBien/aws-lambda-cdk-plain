@@ -23,7 +23,7 @@ public class Greetings{
 
 ```
 
-deployed with AWS Cloud Development Kit:
+...deployed with AWS Cloud Development Kit:
 
 
 ```java
@@ -47,14 +47,14 @@ Function createUserListenerFunction(String functionName,String functionHandler, 
 
 ```
 
-with maven and cdk:
+provisioned with maven and cdk:
 
 ```
 mvn clean package
 cd cdk && mvn clean package && cdk deploy
 ```
 
-...and (blackbox) tested with [AWS SDK for Java 2.x%](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide):
+...and (blackbox) tested with [AWS SDK for Java 2.x](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide):
 
 ```java
 
