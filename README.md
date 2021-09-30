@@ -90,7 +90,9 @@ cd cdk && mvn clean package && cdk deploy
 
 ```
 
+## In Action
 
+[![Plain Java POJOs as AWS Lambdas](https://i.ytimg.com/vi/rHq514-1aHM/mqdefault.jpg)](https://www.youtube.com/embed/rHq514-1aHM?rel=0)
 
 ## References
 
