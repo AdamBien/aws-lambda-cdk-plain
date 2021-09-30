@@ -47,7 +47,7 @@ Function createUserListenerFunction(String functionName,String functionHandler, 
 
 ```
 
-provisioned with maven and cdk:
+...provisioned with maven and cdk:
 
 ```
 mvn clean package
