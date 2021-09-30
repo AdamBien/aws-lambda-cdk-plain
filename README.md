@@ -6,7 +6,7 @@ A lean starting point for building, testing and deploying AWS Lambdas with Java.
 
 A simple Java AWS Lambda without any AWS dependencies:
 
-java```
+```java
 
 public class Greetings{
 
@@ -26,7 +26,13 @@ public class Greetings{
 deployed with AWS Cloud Development Kit for Java and Maven:
 
 
-java```
+```java
+
+import software.amazon.awscdk.services.lambda.Code;
+import software.amazon.awscdk.services.lambda.Function;
+import software.amazon.awscdk.services.lambda.Runtime;
+
+//...
 
 Function createUserListenerFunction(String functionName,String functionHandler, int memory, int timeout) {
     return Function.Builder.create(this, id(functionName))

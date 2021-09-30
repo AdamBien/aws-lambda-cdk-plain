@@ -1,10 +1,7 @@
 # Slightly Streamlined AWS Cloud Development Kit (CDK) Boilerplate
 
-This is a blank, slightly streamlined, project for Java development with CDK.
-
-You will find the maven command in `cdk.json` file.
-
-It is a [Maven](https://maven.apache.org/) based project, so you can open this project with any Maven compatible Java IDE to build and run tests.
+This module is based on [aws-cdk-plain](https://github.com/AdamBien/aws-cdk-plain) 
+which fully relies on [AWS CDK for Java](https://docs.aws.amazon.com/cdk/latest/guide/work-with-cdk-java.html).
 
 ## Installation
 
