@@ -36,7 +36,5 @@ public class InvokeLambdaIT {
             assertNull(error);
             var value = response.payload().asUtf8String();
             System.out.println("Function executed. Response: " + value);
-            var logTail = response.logResult();
-            System.out.println("Log entries: " + logTail);
     }    
 }
