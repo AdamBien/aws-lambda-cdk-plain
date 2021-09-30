@@ -58,39 +58,41 @@ cd cdk && mvn clean package && cdk deploy
 
 ```java
 
- @BeforeEach
-    public void initClient() {
-        var credentials = DefaultCredentialsProvider
-        .builder()
-        .profileName("airhacks.live")
-        .build();
-        
-        this.client = LambdaClient.builder()
-                       .credentialsProvider(credentials)
-                       .build();
-    }
+@BeforeEach
+public void initClient() {
+    var credentials = DefaultCredentialsProvider
+    .builder()
+    .profileName("airhacks.live")
+    .build();
 
-    @Test
-    public void invokeLambdaAsynchronously() {
-            String json = "{\"user \":\"duke\"}";
-            SdkBytes payload = SdkBytes.fromUtf8String(json);
+    this.client = LambdaClient.builder()
+                   .credentialsProvider(credentials)
+                   .build();
+}
 
-            InvokeRequest request = InvokeRequest.builder()
-                    .functionName("airhacks_lambda_greetings_boundary_Greetings")
-                    .payload(payload)
-                    .invocationType(InvocationType.REQUEST_RESPONSE)
-                    .build();
+@Test
+public void invokeLambdaAsynchronously() {
+        String json = "{\"user \":\"duke\"}";
+        SdkBytes payload = SdkBytes.fromUtf8String(json);
 
-            var response = this.client.invoke(request);
-            var error = response.functionError();
-            assertNull(error);
-            var value = response.payload().asUtf8String();
-            System.out.println("Function executed. Response: " + value);
-    }    
+        InvokeRequest request = InvokeRequest.builder()
+                .functionName("airhacks_lambda_greetings_boundary_Greetings")
+                .payload(payload)
+                .invocationType(InvocationType.REQUEST_RESPONSE)
+                .build();
+
+        var response = this.client.invoke(request);
+        var error = response.functionError();
+        assertNull(error);
+        var value = response.payload().asUtf8String();
+        System.out.println("Function executed. Response: " + value);
+}    
 
 ```
 
+## In Action
 
+[![Plain Java POJOs as AWS Lambdas](https://i.ytimg.com/vi/rHq514-1aHM/mqdefault.jpg)](https://www.youtube.com/embed/rHq514-1aHM?rel=0)
 
 ## References
 
