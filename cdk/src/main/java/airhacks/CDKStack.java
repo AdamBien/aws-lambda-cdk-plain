@@ -24,8 +24,11 @@ public class CDKStack extends Stack {
         return Function.Builder.create(this, id(functionName))
                 .runtime(Runtime.JAVA_11)
                 .code(Code.fromAsset("../target/function.jar"))
-                .handler(functionHandler).memorySize(memory)
-                .functionName(functionName).timeout(Duration.seconds(timeout)).build();
+                .handler(functionHandler)
+                .memorySize(memory)
+                .functionName(functionName)
+                .timeout(Duration.seconds(timeout))
+                .build();
     }
     
     String id(String type) {
