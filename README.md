@@ -47,6 +47,50 @@ Function createUserListenerFunction(String functionName,String functionHandler, 
 
 ```
 
+with maven and cdk:
+
+```
+mvn clean package
+cd cdk && mvn clean package && cdk deploy
+```
+
+System Tests included:
+
+```java
+
+ @BeforeEach
+    public void initClient() {
+        var credentials = DefaultCredentialsProvider
+        .builder()
+        .profileName("airhacks.live")
+        .build();
+        
+        this.client = LambdaClient.builder()
+                       .credentialsProvider(credentials)
+                       .build();
+    }
+
+    @Test
+    public void invokeLambdaAsynchronously() {
+            String json = "{\"user \":\"duke\"}";
+            SdkBytes payload = SdkBytes.fromUtf8String(json);
+
+            InvokeRequest request = InvokeRequest.builder()
+                    .functionName("airhacks_lambda_greetings_boundary_Greetings")
+                    .payload(payload)
+                    .invocationType(InvocationType.REQUEST_RESPONSE)
+                    .build();
+
+            var response = this.client.invoke(request);
+            var error = response.functionError();
+            assertNull(error);
+            var value = response.payload().asUtf8String();
+            System.out.println("Function executed. Response: " + value);
+    }    
+
+```
+
+
 
 ## AWS SDK
 
