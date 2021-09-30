@@ -23,7 +23,7 @@ public class Greetings{
 
 ```
 
-deployed with AWS Cloud Development Kit for Java and Maven:
+deployed with AWS Cloud Development Kit:
 
 
 ```java
@@ -54,7 +54,7 @@ mvn clean package
 cd cdk && mvn clean package && cdk deploy
 ```
 
-System Tests included:
+...and (blackbox) tested with [AWS SDK for Java 2.x%](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide):
 
 ```java
 
@@ -92,8 +92,6 @@ System Tests included:
 
 
 
-## AWS SDK
+## References
 
-SDK used for System Testing
-
-https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide
+The deployment is borrowed from: ["Slightly Streamlined AWS Cloud Development Kit (CDK) Boilerplate"](https://github.com/AdamBien/aws-cdk-plain)
