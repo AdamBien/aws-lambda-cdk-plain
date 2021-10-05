@@ -16,14 +16,11 @@ public class CDKApp {
             Tags.of(app).add("environment","workshops");
             Tags.of(app).add("application", appName);
 
-        var environment = Environment.builder().
-                        account(System.getenv("CDK_DEFAULT_ACCOUNT")).
-                        region(System.getenv("CDK_DEFAULT_REGION")).
-                        build();
+        var environment = Environment.builder()
+                        .build();
                         
-        var stackProps = StackProps.builder().
-                env(environment).
-                build();
+        var stackProps = StackProps.builder()
+                        .build();
         
         new CDKStack(app, appName, stackProps);
         app.synth();
