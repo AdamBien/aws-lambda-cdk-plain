@@ -1,0 +1,2 @@
+#!/bin/bash
+cdk destroy

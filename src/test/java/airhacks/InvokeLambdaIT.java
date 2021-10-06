@@ -14,7 +14,7 @@ public class InvokeLambdaIT {
 
     @BeforeEach
     public void initClient() {
-        var credentials = DefaultCredentialsProvider.builder().profileName("airhacks.live").build();
+        var credentials = DefaultCredentialsProvider.builder().build();
         this.client = LambdaClient.builder()
                        .credentialsProvider(credentials)
                        .build();
