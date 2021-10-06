@@ -1,2 +1,2 @@
 #!/bin/bash
-cdk destroy
+cd cdk && cdk destroy
