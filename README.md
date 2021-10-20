@@ -100,6 +100,9 @@ Cold and "warm" starts of JavaScript and Java Lambdas:
 
 [![Java vs. JavaScript comparison](https://i.ytimg.com/vi/28Da0l0MFms/mqdefault.jpg)](https://www.youtube.com/embed/28Da0l0MFms?rel=0)
 
+## AWS Lambda on Java: How Good / Bad Is The Cold Start?
+
+[![Coldstart with Java](https://i.ytimg.com/vi/EXSZ5TFgUKU/mqdefault.jpg)](https://www.youtube.com/embed/EXSZ5TFgUKU?rel=0)
 
 ## References
 
