@@ -94,6 +94,13 @@ public void invokeLambdaAsynchronously() {
 
 [![Plain Java POJOs as AWS Lambdas](https://i.ytimg.com/vi/rHq514-1aHM/mqdefault.jpg)](https://www.youtube.com/embed/rHq514-1aHM?rel=0)
 
+## Java "vs." JavaScript
+
+Cold and "warm" starts of JavaScript and Java Lambdas:
+
+[![Java vs. JavaScript comparison](https://i.ytimg.com/vi/28Da0l0MFms/mqdefault.jpg)](https://www.youtube.com/embed/28Da0l0MFms?rel=0)
+
+
 ## References
 
 The deployment is borrowed from: ["Slightly Streamlined AWS Cloud Development Kit (CDK) Boilerplate"](https://github.com/AdamBien/aws-cdk-plain)
