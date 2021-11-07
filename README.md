@@ -104,6 +104,10 @@ Cold and "warm" starts of JavaScript and Java Lambdas:
 
 [![Coldstart with Java](https://i.ytimg.com/vi/EXSZ5TFgUKU/mqdefault.jpg)](https://www.youtube.com/embed/EXSZ5TFgUKU?rel=0)
 
+## Lambda Configuration
+
+[![AWS Lambda Configuration with Java CDK](https://i.ytimg.com/vi/Z3Ir-AQEsKk/mqdefault.jpg)](https://www.youtube.com/embed/Z3Ir-AQEsKk?rel=0)
+
 ## References
 
 The deployment is borrowed from: ["Slightly Streamlined AWS Cloud Development Kit (CDK) Boilerplate"](https://github.com/AdamBien/aws-cdk-plain)
