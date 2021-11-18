@@ -14,10 +14,18 @@ import software.amazon.awscdk.services.lambda.Runtime;
 
 public class CDKStack extends Stack {
 
+    static Map<String, String> configuration = Map.of("message", "hello,duke");
+    static String functionName  = "airhacks_lambda_greetings_boundary_Greetings";
+    static String lambdaHandler = "airhacks.lambda.greetings.boundary.Greetings::onEvent";
+    static int memory = 128;
+    static int timeout = 10;
+    static int maxConcurrency = 2;
+
     public CDKStack(final Construct scope, final String id, final StackProps props) {
         super(scope, id, props);
-        Map<String, String> configuration = Map.of("message", "hello,duke");
-        var function = createUserListenerFunction("airhacks_lambda_greetings_boundary_Greetings","airhacks.lambda.greetings.boundary.Greetings::onEvent", configuration, 128, 5, 10);
+        
+        var function = createUserListenerFunction(functionName, lambdaHandler, configuration, memory, maxConcurrency, timeout);
+        
         CfnOutput.Builder.create(this, "function-output").value(function.getFunctionArn()).build();
     }
     
