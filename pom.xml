@@ -37,20 +37,23 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+       <!-- both dependencies are only required for deserialization 
+            of more complex events like e.g. S3.
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-core</artifactId>
             <version>1.2.1</version>
         </dependency>
         <dependency>
-            <groupId>software.amazon.awssdk</groupId>
-            <artifactId>lambda</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-events</artifactId>
             <version>3.9.0</version>
+        </dependency-->
+
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>lambda</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
