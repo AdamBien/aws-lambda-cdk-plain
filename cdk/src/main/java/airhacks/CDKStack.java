@@ -24,13 +24,13 @@ public class CDKStack extends Stack {
     public CDKStack(final Construct scope, final String id, final StackProps props) {
         super(scope, id, props);
         
-        var function = createUserListenerFunction(functionName, lambdaHandler, configuration, memory, maxConcurrency, timeout);
+        var function = createFunction(functionName, lambdaHandler, configuration, memory, maxConcurrency, timeout);
         
         CfnOutput.Builder.create(this, "function-output").value(function.getFunctionArn()).build();
     }
     
 
-    Function createUserListenerFunction(String functionName,String functionHandler, Map<String,String> configuration, int memory, int maximumConcurrentExecution, int timeout) {
+    Function createFunction(String functionName,String functionHandler, Map<String,String> configuration, int memory, int maximumConcurrentExecution, int timeout) {
         return Function.Builder.create(this, functionName)
                 .runtime(Runtime.JAVA_11)
                 .code(Code.fromAsset("../target/function.jar"))
