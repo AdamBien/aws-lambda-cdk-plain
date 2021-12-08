@@ -22,7 +22,7 @@ public class InvokeLambdaIT {
 
     @Test
     public void invokeLambdaAsynchronously() {
-            String json = "{\"user \":\"duke\"}";
+            String json = "{\"user\":\"duke\"}";
             SdkBytes payload = SdkBytes.fromUtf8String(json);
 
             InvokeRequest request = InvokeRequest.builder()
