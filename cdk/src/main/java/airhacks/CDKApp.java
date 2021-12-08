@@ -19,7 +19,7 @@ public class CDKApp {
         var stackProps = StackProps.builder()
                         .build();
         
-        new CDKStack(app, appName, stackProps);
+        new LambdaStack(app, appName, stackProps);
         app.synth();
     }
 }
