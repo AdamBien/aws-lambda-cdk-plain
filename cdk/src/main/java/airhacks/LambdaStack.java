@@ -1,10 +1,6 @@
 package airhacks;
 
-import software.constructs.Construct;
-
 import java.util.Map;
-
-import javax.net.ssl.TrustManagerFactorySpi;
 
 import software.amazon.awscdk.CfnOutput;
 import software.amazon.awscdk.Duration;
@@ -15,7 +11,7 @@ import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.LambdaInsightsVersion;
 import software.amazon.awscdk.services.lambda.Runtime;
 import software.amazon.awscdk.services.lambda.Tracing;
-import software.amazon.awscdk.services.logs.RetentionDays;
+import software.constructs.Construct;
 
 public class LambdaStack extends Stack {
 
