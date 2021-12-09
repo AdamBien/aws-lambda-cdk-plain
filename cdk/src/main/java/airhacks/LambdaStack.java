@@ -42,7 +42,6 @@ public class LambdaStack extends Stack {
                 .timeout(Duration.seconds(timeout))
                 .insightsVersion(LambdaInsightsVersion.VERSION_1_0_98_0)
                 .tracing(Tracing.ACTIVE)
-                .profiling(true)
                 .reservedConcurrentExecutions(maximumConcurrentExecution)
                 .build();
     }
