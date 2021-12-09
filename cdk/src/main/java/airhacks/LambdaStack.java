@@ -44,7 +44,6 @@ public class LambdaStack extends Stack {
                 .functionName(functionName)
                 .environment(configuration)
                 .timeout(Duration.seconds(timeout))
-                .logRetention(RetentionDays.ONE_DAY)
                 .insightsVersion(LambdaInsightsVersion.VERSION_1_0_98_0)
                 .tracing(Tracing.ACTIVE)
                 .profiling(true)
