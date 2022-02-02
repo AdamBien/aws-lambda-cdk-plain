@@ -36,7 +36,7 @@ import software.amazon.awscdk.services.lambda.Runtime;
 
 Function createUserListenerFunction(String functionName,String functionHandler, int memory, int timeout) {
     return Function.Builder.create(this, id(functionName))
-            .runtime(Runtime.JAVA_11)
+            .runtime(Runtime.JAVA_11) //https://aws.amazon.com/corretto
             .code(Code.fromAsset("../target/function.jar"))
             .handler(functionHandler)
             .memorySize(memory)
