@@ -6,6 +6,7 @@ import software.amazon.awscdk.CfnOutput;
 import software.amazon.awscdk.Duration;
 import software.amazon.awscdk.Stack;
 import software.amazon.awscdk.StackProps;
+import software.amazon.awscdk.services.lambda.Architecture;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
 import software.amazon.awscdk.services.lambda.LambdaInsightsVersion;
@@ -24,13 +25,13 @@ public class LambdaStack extends Stack {
     public LambdaStack(final Construct scope, final String id, final StackProps props) {
         super(scope, id, props);
         
-        var function = createFunction(functionName, lambdaHandler, configuration, memory, maxConcurrency, timeout);
+        var function = createFunction(functionName, lambdaHandler, configuration, memory, timeout);
         
         CfnOutput.Builder.create(this, "function-output").value(function.getFunctionArn()).build();
     }
     
 
-    Function createFunction(String functionName,String functionHandler, Map<String,String> configuration, int memory, int maximumConcurrentExecution, int timeout) {
+    Function createFunction(String functionName,String functionHandler, Map<String,String> configuration, int memory, int timeout) {
         return Function.Builder.create(this, functionName)
                 .runtime(Runtime.JAVA_11)
                 .architecture(Architecture.ARM_64)
