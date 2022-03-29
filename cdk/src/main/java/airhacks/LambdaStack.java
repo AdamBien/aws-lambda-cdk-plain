@@ -20,7 +20,6 @@ public class LambdaStack extends Stack {
     static String lambdaHandler = "airhacks.lambda.greetings.boundary.Greetings::onEvent";
     static int memory = 128;
     static int timeout = 10;
-    static int maxConcurrency = 2;
 
     public LambdaStack(final Construct scope, final String id, final StackProps props) {
         super(scope, id, props);
@@ -34,15 +33,14 @@ public class LambdaStack extends Stack {
     Function createFunction(String functionName,String functionHandler, Map<String,String> configuration, int memory, int maximumConcurrentExecution, int timeout) {
         return Function.Builder.create(this, functionName)
                 .runtime(Runtime.JAVA_11)
+                .architecture(Architecture.ARM_64)
                 .code(Code.fromAsset("../target/function.jar"))
                 .handler(functionHandler)
                 .memorySize(memory)
                 .functionName(functionName)
                 .environment(configuration)
                 .timeout(Duration.seconds(timeout))
-                .insightsVersion(LambdaInsightsVersion.VERSION_1_0_98_0)
                 .tracing(Tracing.ACTIVE)
-                .reservedConcurrentExecutions(maximumConcurrentExecution)
                 .build();
     }
     
