@@ -9,7 +9,6 @@ import software.amazon.awscdk.StackProps;
 import software.amazon.awscdk.services.lambda.Architecture;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
-import software.amazon.awscdk.services.lambda.LambdaInsightsVersion;
 import software.amazon.awscdk.services.lambda.Runtime;
 import software.amazon.awscdk.services.lambda.Tracing;
 import software.constructs.Construct;
@@ -27,7 +26,7 @@ public class LambdaStack extends Stack {
         
         var function = createFunction(functionName, lambdaHandler, configuration, memory, timeout);
         
-        CfnOutput.Builder.create(this, "function-output").value(function.getFunctionArn()).build();
+        CfnOutput.Builder.create(this, "FunctionARN").value(function.getFunctionArn()).build();
     }
     
 
