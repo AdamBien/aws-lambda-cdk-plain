@@ -34,7 +34,7 @@ public class LambdaStack extends Stack {
         return Function.Builder.create(this, functionName)
                 .runtime(Runtime.JAVA_11)
                 .architecture(Architecture.ARM_64)
-                .code(Code.fromAsset("../target/function.jar"))
+                .code(Code.fromAsset("../lambda/target/function.jar"))
                 .handler(functionHandler)
                 .memorySize(memory)
                 .functionName(functionName)

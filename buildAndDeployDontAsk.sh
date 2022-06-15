@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
 echo "building functions"
-mvn clean package
+cd lambda && mvn clean package
 echo "building CDK"
-cd cdk && mvn clean package && cdk deploy --require-approval=never
+cd ../cdk && mvn clean package && cdk deploy --all --require-approval=never
