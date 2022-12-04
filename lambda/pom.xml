@@ -39,7 +39,6 @@
     <dependencies>
        <!-- both dependencies are only required for deserialization 
             of more complex events like e.g. S3.
-       -->
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-core</artifactId>
@@ -49,7 +48,7 @@
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-events</artifactId>
             <version>3.11.0</version>
-        </dependency>
+        </dependency-->
 
         <dependency>
             <groupId>software.amazon.awssdk</groupId>
