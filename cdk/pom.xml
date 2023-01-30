@@ -25,12 +25,12 @@
         <dependency>
             <groupId>software.amazon.awscdk</groupId>
             <artifactId>aws-cdk-lib</artifactId>
-            <version>2.53.0</version>
+            <version>2.62.2</version>
         </dependency>
         <dependency>
             <groupId>software.constructs</groupId>
             <artifactId>constructs</artifactId>
-            <version>3.4.174</version>
+            <version>3.4.229</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
