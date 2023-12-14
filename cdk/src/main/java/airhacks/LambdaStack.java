@@ -27,7 +27,7 @@ public class LambdaStack extends Stack {
 
         public Builder(Construct construct, String stackNamePrefix) {
             this.construct = construct;
-            this.stackId = stackNamePrefix.toLowerCase() + "-function-pojo-stack";
+            this.stackId = stackNamePrefix.toLowerCase() + "-stack";
         }
 
         public Builder functionName(String functionName) {
