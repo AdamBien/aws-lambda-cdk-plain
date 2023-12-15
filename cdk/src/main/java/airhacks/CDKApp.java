@@ -15,8 +15,8 @@ public class CDKApp {
         Tags.of(app).add("application", appName);
 
         new LambdaStack.Builder(app, appName)
-                .functionHandler("airhacks.lambda.greetings.boundary.Greetings::onEvent")
-                .functionName("airhacks_POJOGreetings")
+                .functionHandler("airhacks.lambda.boundary.POJOLambda::onEvent")
+                .functionName("airhacks_POJOLambda")
                 .configuration(Map.of("message", "hello,duke"))
                 .build();
         app.synth();
