@@ -6,6 +6,7 @@ import java.util.Objects;
 import software.amazon.awscdk.CfnOutput;
 import software.amazon.awscdk.Duration;
 import software.amazon.awscdk.Stack;
+import software.amazon.awscdk.services.events.targets.EventBus;
 import software.amazon.awscdk.services.lambda.Architecture;
 import software.amazon.awscdk.services.lambda.Code;
 import software.amazon.awscdk.services.lambda.Function;
@@ -79,7 +80,6 @@ public class LambdaStack extends Stack {
         var timeout = 10;
         
         var function = createFunction(builder.functionName, builder.functionHandler, builder.configuration, builder.ram, timeout);
-        
         CfnOutput.Builder.create(this, "FunctionARN").value(function.getFunctionArn()).build();
     }
     
