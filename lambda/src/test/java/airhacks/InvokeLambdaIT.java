@@ -26,7 +26,7 @@ public class InvokeLambdaIT {
             SdkBytes payload = SdkBytes.fromUtf8String(json);
 
             InvokeRequest request = InvokeRequest.builder()
-                    .functionName("airhacks_lambda_greetings_boundary_Greetings")
+                    .functionName("airhacks_POJOLambda")
                     .payload(payload)
                     .invocationType(InvocationType.REQUEST_RESPONSE)
                     .build();
