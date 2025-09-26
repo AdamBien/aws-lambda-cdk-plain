@@ -1,5 +1,6 @@
 package airhacks.lambda.example.boundary;
 
+import airhacks.lambda.example.control.EventProcessor;
 import airhacks.lambda.example.entity.ExampleEvent;
 import airhacks.logging.control.Log;
 
@@ -27,7 +28,8 @@ public class EventListener {
         Log.info("event received: %s", awsEvent);
         var domainEvent = extract(awsEvent);
         Log.info("event converted: %s", domainEvent);
-        
+        EventProcessor.process(domainEvent);
+        Log.info("event processed: %s", domainEvent);
     }
 
     /**
