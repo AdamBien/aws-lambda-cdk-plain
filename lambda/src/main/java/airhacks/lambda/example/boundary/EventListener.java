@@ -1,5 +1,8 @@
 package airhacks.lambda.example.boundary;
 
+import airhacks.lambda.example.entity.ExampleEvent;
+import airhacks.logging.control.Log;
+
 /**
  * Example Lambda handler for processing AWS events from EventBridge, SNS, SQS, CodeBuild or other AWS services.
  * Demonstrates event-driven processing pattern for AWS Lambda functions.
@@ -11,7 +14,7 @@ public class EventListener {
     static String message = System.getenv("message");
 
     public EventListener() {
-        System.out.println("initialized with configuration: " + message);
+        Log.info("initialized with configuration: %s", message);
     }
 
     /**
@@ -19,17 +22,20 @@ public class EventListener {
      * @param event AWS 
      */
     public void onEvent(Object event) {
-        System.out.println("event received: %s".formatted(event));
+        Log.info("event received: %s", event);
     }
 
     /**
-     * 
+     * Transforms AWS service event into domain-specific representation.
+     * Implement actual parsing logic based on the specific AWS service event structure
+     * (e.g., EventBridge detail, SNS Message, SQS body, CodeBuild state change)
+     *
      * @param event AWS event
      * @return domain specific payload
      */
-    static String extract(Object event){
+    static ExampleEvent extract(Object event){
         //placeholder for conversion
-        return event.toString();
+        return new ExampleEvent(event.toString());
     }
     
 }
