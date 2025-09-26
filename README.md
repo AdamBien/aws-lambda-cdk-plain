@@ -1,4 +1,4 @@
-# Simplest Possible AWS Lambda Function with Cloud Development Kit (CDK) Boilerplate
+# Simplest Possible, BCE structured, AWS Lambda Function with Cloud Development Kit (CDK) Boilerplate
 
 A lean starting point for building, testing and deploying AWS Lambdas with Java. This project serves as a reference implementation for serverless [BCE (Boundary-Control-Entity)](https://bce.design) architecture.
 
@@ -7,12 +7,20 @@ A lean starting point for building, testing and deploying AWS Lambdas with Java.
 A simple Java AWS Lambda without any AWS dependencies:
 
 ```java
+package airhacks.lambda.example.boundary;
+
 public class EventListener {
 
-    public void onEvent(Map<String, String> event) {
-        System.out.println("Event received: " + event);
-        var message = event.get("message");
-        System.out.println("Message: " + message);
+    static String message = System.getenv("message");
+
+    public void onEvent(Object awsEvent) {
+        Log.info("event received: %s", awsEvent);
+        var domainEvent = extract(awsEvent);
+        EventProcessor.process(domainEvent);
+    }
+
+    static ExampleEvent extract(Object event) {
+        return new ExampleEvent(event.toString());
     }
 }
 ```
@@ -21,71 +29,62 @@ public class EventListener {
 
 
 ```java
+import software.amazon.awscdk.services.lambda.*;
 
-import software.amazon.awscdk.services.lambda.Code;
-import software.amazon.awscdk.services.lambda.Function;
-import software.amazon.awscdk.services.lambda.Runtime;
-
-//...
-
-Function createUserListenerFunction(String functionName,String functionHandler, int memory, int timeout) {
-    return Function.Builder.create(this, id(functionName))
-            .runtime(Runtime.JAVA_21) //https://aws.amazon.com/corretto
-            .code(Code.fromAsset("../target/function.jar"))
+Function createFunction(String functionName, String functionHandler, Map<String,String> configuration, int memory, int timeout) {
+    return Function.Builder.create(this, functionName)
+            .runtime(Runtime.JAVA_21)
+            .architecture(Architecture.ARM_64)
+            .code(Code.fromAsset("../lambda/target/function.jar"))
             .handler(functionHandler)
             .memorySize(memory)
             .functionName(functionName)
+            .environment(configuration)
             .timeout(Duration.seconds(timeout))
+            .tracing(Tracing.ACTIVE)
             .build();
 }
-
 ```
 
 ...provisioned with maven and cdk:
 
-```
-mvn clean package
-cd cdk && mvn clean package && cdk deploy
+```bash
+cd lambda && mvn clean package
+cd ../cdk && mvn clean package && cdk deploy
 ```
 
 ...and (blackbox) tested with [AWS SDK for Java 2.x](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide):
 
 ```java
-
 @BeforeEach
 public void initClient() {
-    var credentials = DefaultCredentialsProvider
-    .builder()
-    .profileName("airhacks.live")
-    .build();
-
+    var credentials = DefaultCredentialsProvider.builder().build();
     this.client = LambdaClient.builder()
-                   .credentialsProvider(credentials)
-                   .build();
+                    .credentialsProvider(credentials)
+                    .build();
 }
 
 @Test
 public void invokeLambdaAsynchronously() {
-        String json = """
-                {
-                        "user":"duke"
-                }
-                """;
-        SdkBytes payload = SdkBytes.fromUtf8String(json);
+    var json = """
+            {
+                    "user":"duke"
+            }
+                    """;
+    var payload = SdkBytes.fromUtf8String(json);
 
-        InvokeRequest request = InvokeRequest.builder()
-                .functionName("airhacks_EventListener")
-                .payload(payload)
-                .invocationType(InvocationType.REQUEST_RESPONSE)
-                .build();
+    var request = InvokeRequest.builder()
+                    .functionName("airhacks_EventListener")
+                    .payload(payload)
+                    .invocationType(InvocationType.REQUEST_RESPONSE)
+                    .build();
 
-        var response = this.client.invoke(request);
-        var error = response.functionError();
-        assertNull(error);
-        var value = response.payload().asUtf8String();
-        System.out.println("Function executed. Response: " + value);
-}    
-
+    var response = this.client.invoke(request);
+    var error = response.functionError();
+    assertNull(error);
+    var value = response.payload().asUtf8String();
+    Log.info("Function executed. Response: " + value);
+}
 ```
 
 ## In Action
