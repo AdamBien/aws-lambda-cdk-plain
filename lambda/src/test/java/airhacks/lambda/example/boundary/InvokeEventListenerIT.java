@@ -1,4 +1,4 @@
-package airhacks;
+package airhacks.lambda.example.boundary;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -31,14 +31,14 @@ public class InvokeEventListenerIT {
 
         @Test
         public void invokeLambdaAsynchronously() {
-                String json = """
+                var json = """
                         {
                                 "user":"duke"
                         }
                                 """;
-                SdkBytes payload = SdkBytes.fromUtf8String(json);
+                var payload = SdkBytes.fromUtf8String(json);
 
-                InvokeRequest request = InvokeRequest.builder()
+                var request = InvokeRequest.builder()
                                 .functionName(functionName)
                                 .payload(payload)
                                 .invocationType(InvocationType.REQUEST_RESPONSE)
