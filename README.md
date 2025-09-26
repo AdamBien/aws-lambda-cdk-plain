@@ -7,20 +7,14 @@ A lean starting point for building, testing and deploying AWS Lambdas with Java.
 A simple Java AWS Lambda without any AWS dependencies:
 
 ```java
+public class EventListener {
 
-public class Greetings{
-
-    public String onEvent(Map<String, String> input) {
-        System.out.println("received: " + input);
-        return input
-        .entrySet()
-        .stream()
-        .map(e -> e.getKey() + "->" + e.getValue())
-        .collect(Collectors.joining(","));
+    public void onEvent(Map<String, String> event) {
+        System.out.println("Event received: " + event);
+        var message = event.get("message");
+        System.out.println("Message: " + message);
     }
-    
 }
-
 ```
 
 ...deployed with AWS Cloud Development Kit:
@@ -36,7 +30,7 @@ import software.amazon.awscdk.services.lambda.Runtime;
 
 Function createUserListenerFunction(String functionName,String functionHandler, int memory, int timeout) {
     return Function.Builder.create(this, id(functionName))
-            .runtime(Runtime.JAVA_11) //https://aws.amazon.com/corretto
+            .runtime(Runtime.JAVA_21) //https://aws.amazon.com/corretto
             .code(Code.fromAsset("../target/function.jar"))
             .handler(functionHandler)
             .memorySize(memory)
@@ -72,11 +66,15 @@ public void initClient() {
 
 @Test
 public void invokeLambdaAsynchronously() {
-        String json = "{\"user \":\"duke\"}";
+        String json = """
+                {
+                        "user":"duke"
+                }
+                """;
         SdkBytes payload = SdkBytes.fromUtf8String(json);
 
         InvokeRequest request = InvokeRequest.builder()
-                .functionName("airhacks_lambda_greetings_boundary_Greetings")
+                .functionName("airhacks_EventListener")
                 .payload(payload)
                 .invocationType(InvocationType.REQUEST_RESPONSE)
                 .build();

@@ -12,7 +12,13 @@ import software.amazon.awssdk.services.lambda.model.InvokeRequest;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.core.SdkBytes;
 
+/**
+ * Integration test for Lambda function invocation.
+ * Requires AWS credentials configured via environment variables, AWS CLI configuration,
+ * or IAM instance role. The Lambda function must be deployed before running this test.
+ */
 public class InvokeEventListenerIT {
+        String functionName = "airhacks_EventListener";
         LambdaClient client;
 
         @BeforeEach
@@ -33,7 +39,7 @@ public class InvokeEventListenerIT {
                 SdkBytes payload = SdkBytes.fromUtf8String(json);
 
                 InvokeRequest request = InvokeRequest.builder()
-                                .functionName("airhacks_EventListener")
+                                .functionName(functionName)
                                 .payload(payload)
                                 .invocationType(InvocationType.REQUEST_RESPONSE)
                                 .build();
