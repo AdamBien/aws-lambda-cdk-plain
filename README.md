@@ -1,6 +1,6 @@
 # Simplest Possible AWS Lambda Function with Cloud Development Kit (CDK) Boilerplate
 
-A lean starting point for building, testing and deploying AWS Lambdas with Java.
+A lean starting point for building, testing and deploying AWS Lambdas with Java. This project serves as a reference implementation for serverless [BCE (Boundary-Control-Entity)](https://bce.design) architecture.
 
 # TL;DR
 
