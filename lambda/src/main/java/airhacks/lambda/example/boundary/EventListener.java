@@ -18,11 +18,16 @@ public class EventListener {
     }
 
     /**
-     * 
-     * @param event AWS 
+     * Lambda function entry point - handles incoming AWS service events.
+     * This method is invoked by the Lambda runtime for each event trigger.
+     *
+     * @param awsEvent AWS service event (EventBridge, SNS, SQS, etc.)
      */
-    public void onEvent(Object event) {
-        Log.info("event received: %s", event);
+    public void onEvent(Object awsEvent) {
+        Log.info("event received: %s", awsEvent);
+        var domainEvent = extract(awsEvent);
+        Log.info("event converted: %s", domainEvent);
+        
     }
 
     /**
