@@ -5,9 +5,9 @@ import java.util.Map;
 import software.amazon.awscdk.App;
 import software.amazon.awscdk.Tags;
 
-public class CDKApp {
-    public static void main(final String[] args) {
-
+public interface CDKApp {
+        
+    static void main(String... args) {
         var app = new App();
         var appName = "aws-lambda-cdk-plain";
         Tags.of(app).add("project", "airhacks.live");
